@@ -27,15 +27,15 @@ public class Bond : SmartContract
         // only admin can issue bond
         if (operation == "IssueBond")
         {
-            if (args.Length != 9) return false;
+            if (args.Length != 8) return false;
             string bondName = (string)args[0];
             uint parValue = (uint)args[1];
-            uint startTime = (uint)args[3];
-            uint maturity = (uint)args[4];
-            uint interval = (uint)args[5];
-            uint couponRate = (uint)args[6];
-            ulong totalAmount = (ulong)args[7];
-            byte[] account = (byte[])args[8];
+            uint startTime = (uint)args[2];
+            uint maturity = (uint)args[3];
+            uint interval = (uint)args[4];
+            uint couponRate = (uint)args[5];
+            ulong totalAmount = (ulong)args[6];
+            byte[] account = (byte[])args[7];
 
             return IssueBond(bondName, parValue, startTime, maturity, interval, couponRate, totalAmount, account);
         }
