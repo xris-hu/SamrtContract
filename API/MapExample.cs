@@ -1,7 +1,5 @@
 using Ont.SmartContract.Framework;
 using Ont.SmartContract.Framework.Services.Ont;
-using Ont.SmartContract.Framework.Services.System;
-using System.Numerics;
 using Helper = Ont.SmartContract.Framework.Helper;
 
 public class MapExample : SmartContract

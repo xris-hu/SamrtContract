@@ -1,5 +1,5 @@
-using Ont.SmartContract.Framework;
-using Ont.SmartContract.Framework.Services.Ont;
+using Neo.SmartContract.Framework;
+using Neo.SmartContract.Framework.Services.Neo;
 using System;
 
 namespace Crypto

@@ -1,4 +1,4 @@
-using Ont.SmartContract.Framework;
+using Neo.SmartContract.Framework;
 using System;
 using System.Numerics;
 
