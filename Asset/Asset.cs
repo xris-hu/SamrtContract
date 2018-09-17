@@ -19,9 +19,6 @@ namespace Asset{
             transfer.Value = ong;
             ret = Native.Invoke(0, OngContract, "transfer", new object[1] { transfer });
             if (ret[0] != 1) throw new Exception("transfer ong error.");
-          
-            Runtime.Notify("Transfer from ", from, " to ", to, " ", ont, " ONT");
-            Runtime.Notify("Transfer from ", from, " to ", to, " ", ong, " ONG");
             return true;
         }
 
