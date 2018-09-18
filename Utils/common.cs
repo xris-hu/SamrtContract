@@ -39,5 +39,11 @@ public class Contract : SmartContract
     {
         return b.AsByteArray();
     }
-
+    
+    public static bool validateAddress(byte[] address)
+    {
+        if (address.Length != 20) return false;
+        if (address.AsBigInteger() == 0) return false;
+        return true;
+    }
 }
