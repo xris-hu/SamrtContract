@@ -10,32 +10,32 @@ public class Contract : SmartContract
         return false;
     }
 
-    private byte[] bytesConcat(byte[] a, byte[] b)
+    public byte[] bytesConcat(byte[] a, byte[] b)
     {
         return a.Concat(b);
     }
 
-    private byte[] stringConcat(string a, string b)
+    public byte[] stringConcat(string a, string b)
     {
         return a.AsByteArray().Concat(b.AsByteArray());
     }
 
-    private byte[] stringToBytes(string s)
+    public byte[] stringToBytes(string s)
     {
         return s.AsByteArray();
     }
 
-    private string bytesToString(byte[] arr)
+    public string bytesToString(byte[] arr)
     {
         return arr.AsString();
     }
 
-    private BigInteger bytestoBiginteger(byte[] arr)
+    public BigInteger bytestoBiginteger(byte[] arr)
     {
         return arr.AsBigInteger();
     }
 
-    private byte[] bigintegerToBytes(BigInteger b)
+    public byte[] bigintegerToBytes(BigInteger b)
     {
         return b.AsByteArray();
     }
