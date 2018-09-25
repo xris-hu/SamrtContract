@@ -102,7 +102,7 @@ public class RedEnvelope : SmartContract
 
     private static byte[] GetLuckyList(byte[] envelopHash)
     {
-        // 
+        //TODO
         return null;
     }
 
