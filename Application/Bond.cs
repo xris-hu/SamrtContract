@@ -1,10 +1,8 @@
 using Neo.SmartContract.Framework;
 using Neo.SmartContract.Framework.Services.Neo;
-using Neo.SmartContract.Framework.Services.System;
 using Helper = Neo.SmartContract.Framework.Helper;
 using System;
 using System.Numerics;
-using System.ComponentModel;
 
 public class Bond : SmartContract
 {
