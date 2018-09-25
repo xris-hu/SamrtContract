@@ -72,6 +72,7 @@ public class Bond : SmartContract
         if (!validateAddress(Account)) return false;
 
         BondItem bond = new BondItem();
+        bond.ParValue = parValue;
         bond.purchaseEndTime = purchaseEndTime;
         bond.CouponRate = couponRate;
         bond.Interval = interval;
