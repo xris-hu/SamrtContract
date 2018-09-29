@@ -1,38 +1,39 @@
 ### FAQ
 
-1. 分配：红包里的金额怎么算？最大值和最小值是多少？ 
+1. Q: **How to calculate the amount of the red envelope？What is the maximum and minimum？ **
 
-   答：随机，额度在0.01和剩余平均值*2之间。 
-   例如：发10个ONG，总共5个红包，那么平均值是2个ONG，那么发出来的红包的额度在0.01～4之间波动。 
-   当前面3个红包总共被领了4个ONG时，剩下6个ONG，总共2个红包，那么这2个红包的额度在：0.01～（6/2 * 2）= 6之间。 
+   A:  Random value between 0.01and 2 times of the average of residual money. 
 
-   如果前面的人手气不好，那么后面的余额越多，红包额度也就越多，反之亦然。
+   For example, if you send 100 ONG，total 10 red envelope, so the average ONG amount of the red  envelope  is 10, so the available of the money range between 0.01 and 20. 
 
-2. 随机性设计 
+   If 3 red envelope has been opened and the residual ONG is 60,  next round,  the range is 0.01 -  60/7 *2 = 17.14.
 
-   答：目前是通过区块的时间对余额取模，得到红包的金额（后续会使用区块hash做随机数）
+    If the previous person is not lucky, the more residual ONG , the more available ONG  for next round.
 
-3. 随机性是否可被预测?
+2. Q: **How randomness is designed**
 
-   第一轮刚开始的情况下，理论上有可能会被预测一个合理的时间对余额取模，获得相对较大的红包，但是最大的不可预测性是他人的行为，如果红包被任何人打开，余额就会变化，即被取模的变量变化，则最佳的时间又会变化，如此反复，直到红包领完，没人可以保证最佳的时间。
+   A:  Currently, modulo the balance through the time of previous block
 
-4. 怎么发红包？
+3. Q: **Whether randomness can be predicted**
 
-   调用合约中的SendLuckyMoney方法调用合约，该方法接收三个参数
+   A: In the first round of the first round, it is theoretically possible to predict a reasonable time to modulate the balance and obtain a relatively large red envelope, but the greatest unpredictability is the behavior of others. If the red envelope is opened by anyone, The balance will change, that is, the variable that is modulo changes, the best time will change again, and so on, until the red envelope is finished, no one can guarantee the best time.
 
-   1：你发合约的账户（相当于你用哪张卡发红包）
+4.  Q: **How to make a red envelope?**
 
-   2：你发红包的数量，最小1个ONG
+   A: Call the **“SendLuckyMoney”** method in the contract, which accepts three parameters
 
-   3：可领红包数量
-   
-   每发一个红包，会返回一个唯一的红包hash
+   1：your wallet address
 
-5. 怎么领红包？
+   2：the ONG amount，minimum 10 ONG
 
-   调用合约中的GetLuckyMoney方法调用合约，该方法接收2个参数，
-   
-   1：红包的hash
-   
-   2：收红包的账户，用于收取ONG。
-   
+   3：the number of red envelopes available
+
+   it will response a red envelope hash.
+
+5. Q: **How to receive the red envelope?**
+
+   A: Call the **“GetLuckyMoney”** method in the contract, which accepts 2 parameters
+
+   1: the red envelope hash
+
+   2: your wallet address
