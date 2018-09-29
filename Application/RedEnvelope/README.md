@@ -2,7 +2,7 @@
 
 1. Q: **How to calculate the amount of the red envelope？What is the maximum and minimum**
 
-   A:  Random value between 0.01and 2 times of the average of residual money. 
+   A:  Random value between 0.01 and 2 times of the average of residual money. 
 
    For example, if you send 100 ONG，total 10 red envelope, so the average ONG amount of the red  envelope  is 10, so the available of the money range between 0.01 and 20. 
 
