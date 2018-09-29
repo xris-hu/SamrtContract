@@ -1,6 +1,6 @@
 ### FAQ
 
-1. Q: **How to calculate the amount of the red envelope？What is the maximum and minimum？ **
+1. Q: **How to calculate the amount of the red envelope？What is the maximum and minimum**
 
    A:  Random value between 0.01and 2 times of the average of residual money. 
 
