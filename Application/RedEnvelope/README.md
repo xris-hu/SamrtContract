@@ -18,7 +18,7 @@
 
    A: In the first round of the first round, it is theoretically possible to predict a reasonable time to modulate the balance and obtain a relatively large red envelope, but the greatest unpredictability is the behavior of others. If the red envelope is opened by anyone, The balance will change, that is, the variable that is modulo changes, the best time will change again, and so on, until the red envelope is finished, no one can guarantee the best time.
 
-4.  Q: **How to make a red envelope?**
+4. Q: **How to make a red envelope?**
 
    A: Call the **“SendLuckyMoney”** method in the contract, which accepts three parameters
 
