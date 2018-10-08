@@ -1,8 +1,6 @@
 using Neo.SmartContract.Framework;
 using Neo.SmartContract.Framework.Services.Neo;
-using Neo.SmartContract.Framework.Services.System;
 using System.Numerics;
-using Helper = Ont.SmartContract.Framework.Helper;
 
 public class StorageExample : SmartContract
 {
