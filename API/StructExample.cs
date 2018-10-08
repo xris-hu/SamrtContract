@@ -1,7 +1,5 @@
 using Neo.SmartContract.Framework;
 using Neo.SmartContract.Framework.Services.Neo;
-using Neo.SmartContract.Framework.Services.System;
-using System.Numerics;
 using Helper = Neo.SmartContract.Framework.Helper;
 
 public class StructExmple : SmartContract
