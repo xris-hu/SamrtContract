@@ -21,7 +21,7 @@ namespace Ontology
         public static readonly byte[] token_index_prefix = "Index".AsByteArray();
         public static readonly byte[] token_cir_key = "in_circulation".AsByteArray();
         public static readonly byte[] token_property_prefix = "token_property".AsByteArray();
-        public static readonly byte[] token_url_prefix = "token_property".AsByteArray();
+        public static readonly byte[] token_url_prefix = "token_url".AsByteArray();
 
 
         public delegate void deleTransfer(byte[] from, byte[] to, byte[] tokenId);
