@@ -536,6 +536,11 @@ def allowance(owner, spender):
     return Get(ctx, key)
 
 def UpgradeContract(code):
+    """
+    Upgrade current smart contract to new smart contract.
+    :param code:new smart contract avm code.
+    :return: True or raise exception.
+    """
     owner = getOwner()
     assert(CheckWitness(owner))
 
@@ -559,12 +564,15 @@ def UpgradeContract(code):
     return True
 
 def Add(a, b):
+    """
+    Adds two numbers, throws on overflow.
+    :param a:operand a
+    :param b:operand b
+    :return:
 	"""
-	Adds two numbers, throws on overflow.
-	"""
-	c = a + b
-	assert (c >= a)
-	return c
+    c = a + b
+    assert (c >= a)
+    return c
 
 def Sub(a, b):
 	"""
