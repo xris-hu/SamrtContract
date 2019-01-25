@@ -585,26 +585,36 @@ def Sub(a, b):
 	return a-b
 
 def Mul(a, b):
-	"""
-	Multiplies two numbers, throws on overflow.
+    """
+    Multiplies two numbers, throws on overflow.
     :param a: operand a
     :param b: operand b
-    :return: a - b if a - b > 0 or revert the transaction.
-	"""
-	if a == 0:
-		return 0
-	c = a * b
-	assert(c / a == b)
-	return c
+    :return:
+    """
+
+    if a == 0:
+        return 0
+    c = a * b
+    assert(c / a == b)
+    return c
 
 def Div(a, b):
+    """
+    Integer division of two numbers, truncating the quotient.
+    :param a: operand a
+    :param b: operand b
+    :return: 
 	"""
-	Integer division of two numbers, truncating the quotient.
-	"""
-	assert (b > 0)
-	c = a / b
-	return c
+
+    assert (b > 0)
+    c = a / b
+    return c
 
 def isAddress(address):
+    """
+    check the address is legal address.
+    :param address:
+    :return:True or raise exception.
+    """
     assert (len(address) == 20 and address != ZERO_ADDRESS)
     return True
