@@ -147,6 +147,9 @@ def Main(operation, args):
     if operation == 'pause':
         return pause()
 
+    if operation == 'unpause':
+        return unpause()
+
     if operation == 'isPaused':
         return isPaused()
 
@@ -336,13 +339,23 @@ def getSupplyController():
 
 def pause():
     """
-    Set the smart contract to frozen state, the token can not be transfered, approved。
+    Set the smart contract to paused state, the token can not be transfered, approved。
     Just can invoke some get interface, like getOwner.
     :return:True or raise exception.
     """
     assert(CheckWitness(getOwner()))
 
     Put(ctx, PAUSED, True)
+
+def unpause():
+    """
+    Resume the smart contract to normal state, all the function can be invoked.
+    :return:True or raise exception.
+    """
+    assert(CheckWitness(getOwner()))
+
+    Put(ctx, PAUSED, False)
+
 
 def isPaused():
     """
