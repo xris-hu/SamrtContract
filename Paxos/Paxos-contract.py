@@ -26,9 +26,9 @@ TOTAL_SUPPLY_KEY = 'TOTAL_SUPPLY'
 ENFORCEMENT_ROLE_KEY = 'LAW_ENFORCEMENT_ROLE'
 SUPPLY_CONTROLLER_KEY = 'SUPPLY_CONTROLLER'
 OWNER_KEY = 'OWNER'
-FROZEN_ADDRESS_KEY = 'FROZEN_ADDRESS'
 BALANCE_PREFIX = 'BALANCE'
 APPROVE_PREFIX = 'APPROVE'
+FROZEN_PREFIX = 'FROZEN'
 
 Owner = Base58ToAddress('AGjD4Mo25kzcStyh1stp7tXkUuMopD43NT')
 SupplyController = Base58ToAddress('AGjD4Mo25kzcStyh1stp7tXkUuMopD43NT')
@@ -263,19 +263,7 @@ def freeze(address):
     assert(isAddress(address))
     assert (CheckWitness(getEnforcementRole()))
 
-    frozenData = Get(ctx, FROZEN_ADDRESS_KEY)
-    if not frozenData:
-        frozenMap = {
-            address: True
-        }
-        Put(ctx, FROZEN_ADDRESS_KEY, Serialize(frozenMap))
-        return True
-
-    frozenMap = Deserialize(frozenData)
-
-    assert (not frozenMap[address])
-    frozenMap[address] = True
-    Put(ctx, FROZEN_ADDRESS_KEY, Serialize(frozenMap))
+    Put(ctx, concat(FROZEN_PREFIX, address), True)
     FrozenEvent(address)
     return True
 
@@ -289,15 +277,7 @@ def unfreez(address):
     assert (isAddress(address))
     assert (CheckWitness(getEnforcementRole()))
 
-    frozenData = Get(ctx, FROZEN_ADDRESS_KEY)
-    if not frozenData:
-        return False
-
-    frozenMap = Deserialize(frozenData)
-
-    assert (frozenMap[address])
-    frozenMap.remove(address)
-    Put(ctx, FROZEN_ADDRESS_KEY, Serialize(frozenMap))
+    Delete(ctx, concat(FROZEN_PREFIX, address))
     UnfrozenEvent(address)
     return True
 
@@ -339,7 +319,7 @@ def getSupplyController():
 
 def pause():
     """
-    Set the smart contract to paused state, the token can not be transfered, approved。
+    Set the smart contract to paused state, the token can not be transfered, approved.
     Just can invoke some get interface, like getOwner.
     :return:True or raise exception.
     """
@@ -377,17 +357,7 @@ def isFrozen(address):
     :param address:confirmed account.
     :return:True or False.
     """
-    assert (isAddress(address))
-    frozenData = Get(ctx, FROZEN_ADDRESS_KEY)
-    if not frozenData:
-        return False
-
-    frozenMap = Deserialize(frozenData)
-
-    if frozenMap[address]:
-        return True
-
-    return False
+    return Get(ctx, concat(FROZEN_PREFIX, address))
 
 def name():
     """
@@ -434,7 +404,7 @@ def transfer(from_acct, to_acct, amount):
     :return: True means success, False or raising exception means failure.
     """
     assert(not isPaused())
-    assert (amount > 0)
+    assert(amount > 0)
     assert(isAddress(to_acct))
     assert(CheckWitness(from_acct))
     assert(not isFrozen(from_acct))
@@ -510,7 +480,6 @@ def transferFrom(spender, from_acct, to_acct, amount):
     :return:
     """
     assert (amount > 0 )
-    assert (not isPaused())
     assert (isAddress(spender) and isAddress(from_acct) and isAddress(to_acct))
     assert (CheckWitness(spender))
 
