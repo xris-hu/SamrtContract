@@ -2,10 +2,8 @@ from ontology.interop.Ontology.Native import Invoke
 from ontology.interop.Ontology.Contract import Migrate
 from ontology.interop.System.Action import RegisterAction
 from ontology.interop.Ontology.Runtime import Base58ToAddress
-from ontology.interop.System.App import RegisterAppCall, DynamicAppCall
 from ontology.interop.System.Storage import Put, GetContext, Get, Delete
 from ontology.interop.System.ExecutionEngine import GetExecutingScriptHash
-from ontology.libont import AddressFromVmCode, bytes2hexstring, bytearray_reverse
 from ontology.interop.System.Runtime import CheckWitness, Notify, Serialize, Deserialize
 
 ONT_ADDRESS = bytearray(b'\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x01')
@@ -34,6 +32,7 @@ SupplyController = Base58ToAddress('AGjD4Mo25kzcStyh1stp7tXkUuMopD43NT')
 EnforcementRole = Base58ToAddress('AGjD4Mo25kzcStyh1stp7tXkUuMopD43NT')
 
 TransferEvent = RegisterAction("TRANSFER", "from", "to", "amount")
+TransferFromEvent = RegisterAction("TRANSFER", "spender", "from", "to", "amount")
 TransferOwnerEvent = RegisterAction("TRANSFEROWNER", "oldowner", "newowner")
 ApproveEvent = RegisterAction("Approve", "owner", "spender", "amount")
 PauseEvent = RegisterAction("PAUSED")
@@ -317,6 +316,8 @@ def pause():
     assert(CheckWitness(getOwner()))
 
     Put(ctx, PAUSED, True)
+    PauseEvent()
+    return True
 
 def unpause():
     """
@@ -326,7 +327,8 @@ def unpause():
     assert(CheckWitness(getOwner()))
 
     Put(ctx, PAUSED, False)
-
+    UnpauseEvent()
+    return True
 
 def isPaused():
     """
@@ -493,8 +495,7 @@ def transferFrom(spender, from_acct, to_acct, amount):
     toBalance = balanceOf(to_acct)
     Put(ctx, concat(BALANCE_PREFIX, to_acct), Add(toBalance, amount))
 
-    TransferEvent(from_acct, to_acct, amount)
-
+    TransferFromEvent(spender, from_acct, to_acct, amount)
     return True
 
 
