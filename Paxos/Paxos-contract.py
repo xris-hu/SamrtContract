@@ -64,8 +64,6 @@ def Main(operation, args):
         return totalSupply()
 
     if operation == 'balanceOf':
-        if len(args) != 1:
-            return False
         acct = args[0]
         return balanceOf(acct)
 
@@ -79,8 +77,6 @@ def Main(operation, args):
         return transferMulti(args)
 
     if operation == 'transferFrom':
-        if len(args) != 4:
-            return False
         spender = args[0]
         from_acct = args[1]
         to_acct = args[2]
@@ -88,16 +84,12 @@ def Main(operation, args):
         return transferFrom(spender, from_acct, to_acct, amount)
 
     if operation == 'approve':
-        if len(args) != 3:
-            return False
         owner = args[0]
         spender = args[1]
         amount = args[2]
         return approve(owner, spender, amount)
 
     if operation == 'allowance':
-        if len(args) != 2:
-            return False
         owner = args[0]
         spender = args[1]
         return allowance(owner, spender)
